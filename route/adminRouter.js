@@ -30,9 +30,6 @@ app.get(
 
 app.get("/deleteAdminRecord/:id", adminC.deleteAdminRecord);
 
-app.get('/updateAdminRecord/:id', passport.checkAuthentication, adminC.updateAdminRecord)
-
-app.post('/updateAdmin',admindb.uploadImg, adminC.updateAdmin)
 
 app.get('/deActive/:id', passport.checkAuthentication, adminC.deActive)
 
