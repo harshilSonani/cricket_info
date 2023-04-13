@@ -1,0 +1,144 @@
+<%- include('header') %>
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Data Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">Data</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-6">
+
+          <div class="card">
+            <div class="card-body">
+
+              <!-- Table with stripped rows -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" colspan="3"><img style="border: 1px solid;" src="<%= data.f_teams.flages %>" width="50" height="35px">&nbsp; <%= data.f_teams.team %></th>
+                    <th></th>
+                  </tr>
+                  <tr>
+                    <td colspan="3" style="text-align: center;">Playing XI</td>
+                  </tr>
+                </thead>
+                <tbody>
+
+                <%  for(let d of F_player){ %>
+                  <% if(d.active){ %>
+                      <tr>
+                        <th></th>
+                        <th scope="row">
+                            <img src="<%= d.img %>" style="border-radius: 50%;" width="50px" height="50px">&nbsp; &nbsp; 
+                            <a href="/player/showPlayerInformation/<%= d.id %>"><%= d.name %></a>
+                        </th>
+                        <th style="padding: 20px 0px;"><%= d.format %></th>
+                      </tr>
+                  <% } %>
+                  <% } %>
+
+                  <tr>
+                    <td colspan="3" style="text-align: center;">Bench</td>
+                  </tr>
+
+                  <%  for(let d of F_player){ %>
+                    <% if(!d.active){ %>
+                        <tr>
+                          <th></th>
+                          <th scope="row">
+                              <img src="<%= d.img %>" style="border-radius: 50%;" width="50px" height="50px">&nbsp; &nbsp; 
+                              <a href="/player/showPlayerInformation/<%= d.id %>"><%= d.name %></a>
+                          </th>
+                          <th style="padding: 20px 0px;"><%= d.format %></th>
+                        </tr>
+                    <% } %>
+                    <% } %>
+
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+
+              
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+            <div class="card">
+              <div class="card-body">
+  
+                <!-- Table with stripped rows -->
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col" colspan="3"><img style="border: 1px solid;" src="<%= data.l_teams.flages %>" width="50" height="35px">&nbsp; <%= data.l_teams.team %></th>
+                      <th></th>
+                    </tr>
+                    <tr>
+                      <td colspan="3" style="text-align: center;">Playing XI</td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td>name</td>
+                      <td>format</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+  
+                  <%  for(let d of l_player){ %>
+                      <tr>
+                        <th></th>
+                        <th scope="row">
+                            <img src="<%= d.img %>"  style="border-radius: 50%;" width="50px" height="50px">&nbsp; &nbsp; 
+                            <a href="/player/showPlayerInformation/<%= d.id %>"><%= d.name %></a>
+                        </th>
+                        <th style="padding: 20px 0px;"><%= d.format %></th>
+                      </tr>
+                    <% } %>
+
+                    <tr>
+                      <td colspan="3" style="text-align: center;">Bench</td>
+                    </tr>
+  
+                    <%  for(let d of l_player){ %>
+                      <% if(!d.active){ %>
+                          <tr>
+                            <th></th>
+                            <th scope="row">
+                                <img src="<%= d.img %>" style="border-radius: 50%;" width="50px" height="50px">&nbsp; &nbsp; 
+                                <a href="/player/showPlayerInformation/<%= d.id %>"><%= d.name %></a>
+                            </th>
+                            <th style="padding: 20px 0px;"><%= d.format %></th>
+                          </tr>
+                      <% } %>
+                      <% } %>
+  
+                  </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+  
+
+  
+              </div>
+            </div>
+  
+          </div>
+        
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+<%- include('footer') %>

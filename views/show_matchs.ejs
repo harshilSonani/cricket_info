@@ -1,0 +1,69 @@
+<%- include('header') %>
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Dashboard</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+
+
+        <section class="section dashboard">
+            <div class="row">
+
+                <!-- Left side columns -->
+                <div class="col-lg-12">
+                    <div class="row">
+
+                        <% for(var d of data){ %>
+                            <div class="col-xxl-6 col-md-6">
+                                <div class="card info-card sales-card">
+
+                                    <div class="filter">
+                                        <a class="icon" href="#" data-bs-toggle="dropdown"><i
+                                                class="bi bi-three-dots"></i></a>
+                                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+
+                                            <li><a class="dropdown-item" href="/matchs/showMore/<%= d.id %>">Show More</a></li>
+                                            <li><a class="dropdown-item" href="/matchs/updateMore/<%= d.id %>">Update</a></li>
+                                            <li><a class="dropdown-item" href="/matchs/deleteMore/<%= d.id %>">Delete</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <h5 class="card-title" style="padding-bottom: 0px;">Match Type <span>| <%= d.matchTypes.mtype %></span></h5>
+
+                                        <div class="d-flex align-items-center">
+                                            
+                                            <div class="ps-3">
+                                                <div class=" small pt-1 fw-bold">
+                                                   <img style="border: 1px solid #000;" src="<%= d.f_teams.flages %>" width="50px" height="35px">  <%= d.f_teams.team %>
+                                                </div>
+                                                <div class=" small pt-1 fw-bold" style="margin-bottom: 15px;">
+                                                    <img style="border: 1px solid #000;" src="<%= d.l_teams.flages %>" width="50px" height="35px"> <%= d.l_teams.team %>
+                                                </div>
+                                                <span class="text-muted small pt-2 ps-1">Date : <%= d.date %> <i
+                                                            class="bi bi-dot"></i> Tiem : <%= d.time %></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <% } %>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <%- include('footer') %>

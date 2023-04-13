@@ -1,0 +1,10 @@
+    <% var i = 1; for(let d of data){ %>
+        <tr>
+            <td scope="col"><%= i ++ %></td>
+            <td scope="col"><%= d.name %></td>
+            <td scope="col"><%= d.countryID.team %></td>
+            <td scope="col"><%= d.format %></td>
+            <td scope="col"><a href="#">active</a></td>
+            <td scope="col"><a href="#">delete</a></td>
+        </tr>
+    <% } %>

@@ -1,0 +1,110 @@
+<%- include('header') %>
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Data Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">Data</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Datatables</h5>
+
+
+              <!-- Table with stripped rows -->
+              <table class="table">
+                <div class="datatable-top">
+                  <div class="datatable-search">
+                      <form>
+                      <input class="datatable-input" placeholder="Search..." type="search" name="search"
+                        title="Search within table">
+                    </form>
+                    </div>
+
+                </div>
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">email</th>
+                    <th scope="col">status</th>
+                    <th scope="col">action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% var i=1; for(var d of data){ %>
+                    <% if(d.active){ %>
+                      <tr>
+                        <th>
+                          <%= i++ %>
+                        </th>
+                        <th>
+                          <%= d.name %>
+                        </th>
+                        <th>
+                          <%= d.email %>
+                        </th>
+                        <th><a href="/admin/deActive/<%= d.id %>">active</a></th>
+                        <th><a href="/admin/deleteAdminRecord/<%= d.id %>" style="color: black;">delete</a> &nbsp;&nbsp;
+                          <a href="/admin/updateAdminRecord/<%= d.id %>" style="color: black;">update</a>
+                        </th>
+                      </tr>
+                      <% }else{ %>
+                        <tr>
+                          <th>
+                            <%= i++ %>
+                          </th>
+                          <th>
+                            <%= d.name %>
+                          </th>
+                          <th>
+                            <%= d.email %>
+                          </th>
+                          <th><a href="/admin/active/<%= d.id %>">deActive</a></th>
+                          <th><a href="/admin/deleteAdminRecord/<%= d.id %>" style="color: black;">delete</a> &nbsp;&nbsp;
+                            <a href="/admin/updateAdminRecord/<%= d.id %>" style="color: black;">update</a>
+                          </th>
+                        </tr>
+                        <% } %>
+                          <% } %>
+                </tbody>
+              </table>
+             <div style="text-align: center;">
+              <a href="/admin/show_adminRecord/?page=<%= prev %>"><</a>
+              <% for(let a=1; a<=dataNO; a++){ %>
+              <a href="/admin/show_adminRecord/?page=<%= a %>"><%= a %></a>
+              <% } %>
+              <a href="/admin/show_adminRecord/?page=<%= next %>">></a>
+              
+             </div>
+              <!-- End Table with stripped rows -->
+
+
+
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+
+  <%- include('footer') %>

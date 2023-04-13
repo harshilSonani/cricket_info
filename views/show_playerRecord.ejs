@@ -1,0 +1,113 @@
+
+  <%- include('header') %>
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Data Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">Data</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Datatables</h5>
+
+
+              <!-- Table with stripped rows -->
+
+              
+
+
+                <table class="table">
+                  <div class="datatable-top">
+                    <div class="datatable-dropdown">
+                      <label>
+                        <select name="team">
+                          <option selected value="0">-- select team --</option>
+                          <% for(let d of teamsData){ %>
+                            <option value="<%= d.id %>"><%= d.team %></option>
+                            <% } %>
+                        </select> select team
+                      </label>
+                    </div>
+  
+                    <form>
+                    <div class="datatable-search">
+                        <input class="datatable-input" placeholder="Search..." type="search" title="Search within table" name="search">
+                      </div>
+                    </form>
+                  </div>
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Player Name</th>
+                      <th scope="col">Player Country</th>
+                      <th scope="col">Player Format</th>
+                      <th scope="col">Player status</th>
+                      <th scope="col">action</th>
+                    </tr>
+                  </thead>
+                  
+
+                  <tbody>
+  
+                    <% var i=1; for(var d of data){ %>
+                      <% if(d.active){ %>
+                        <tr>
+                          <th><%= i++ %></th>
+                          <th><a href="/player/showPlayerInformation/<%= d.id %>">
+                              <%= d.name %></a></th>
+                          <th><%= d.countryID.team %></th>
+                          <th><%= d.format %></th>
+                          <th><a href="/player/deActive/<%= d.id %>">deselect</a></th>
+                          <th><a href="/player/delete/<%= d.id %>" style="color: black;">delete</a> &nbsp;&nbsp;
+                            <a href="/player/update/<%= d.id %>" style="color: black;">update</a>
+                          </th>
+                        </tr>
+                        <% } else{ %>
+                          <tr>
+                            <th><%= i++ %></th>
+                            <th><a href="/player/showPlayerInformation/<%= d.id %>">
+                                <%= d.name %></a></th>
+                            <th><%= d.countryID.team %></th>
+                            <th><%= d.format %></th>
+                            <th><a href="/player/active/<%= d.id %>">select</a></th>
+                            <th><a href="/player/deleteAdminRecord/<%= d.id %>" style="color: black;">delete</a> &nbsp;&nbsp;
+                              <a href="/player/updateAdminRecord/<%= d.id %>" style="color: black;">update</a>
+                            </th>
+                          </tr>
+                          <% } %>
+                            <% } %>
+                  </tbody>
+                </table>
+              
+              <!-- End Table with stripped rows -->
+
+              
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+  
+
+  <%- include('footer') %>
