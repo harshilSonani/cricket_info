@@ -1,11 +1,16 @@
 const { urlencoded } = require("express");
 const express = require("express");
-const mongoose = require("./config/mongoose");
+const mongoose = require('mongoose');
 const cookie = require("cookie-parser");
 const port = 8001;
 
 const app = express();
 
+mongoose.connect('mongodb+srv://harshilsonani09:0Zgpz4nMjKUOGbYZ@cluster0.vrj9unc.mongodb.net/liveAdmin').then(()=>{
+  console.log('database connected')
+}).catch((err)=>{
+  console.log('database not connected');
+});
 
 const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
