@@ -170,7 +170,7 @@ module.exports.deleteAdminRecord = async (req, res) => {
   let data = await admindb.findById(req.params.id);
 
   if (data.avatar) {
-    fs.unlinkSync(path.join(__dirname, "..", data.avatar));
+    fs.unlinkSync(path.join(__dirname, "../assets", data.avatar));
   }
 
   let aa = await admindb.findByIdAndDelete(req.params.id);

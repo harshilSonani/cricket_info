@@ -28,7 +28,7 @@ module.exports.deleteCricketRecord = async (req,res) =>{
   let data = await cricketdb.findById(req.params.id);
 
   if(data.flages){
-    fs.unlinkSync(path.join(__dirname,'..',data.flages));
+    fs.unlinkSync(path.join(__dirname,'../assets',data.flages));
   }
   let aa = await cricketdb.findByIdAndDelete(req.params.id);
 
@@ -44,22 +44,20 @@ module.exports.updateAdminRecord = async (req,res) =>{
 }
 
 module.exports.update = async (req,res) =>{
-  // if(req.file){
-  //   let data = await cricketdb.findById(req.body.uid);
+  if(req.file){
+    let data = await cricketdb.findById(req.body.uid);
 
-  //   if(data.flages){
-  //     fs.unlinkSync(path.join(__dirname,'..',data.flages));
-  //   }
-  //   req.body.flages = cricketdb.imagePath+ '/' + req.file.filename;
+    if(data.flages){
+      fs.unlinkSync(path.join(__dirname,'../assets',data.flages));
+    }
+    req.body.flages = cricketdb.imagePath+ '/' + req.file.filename;
 
-  //   let insertData = cricketdb.findByIdAndUpdate(req.body.uid, req.body);
+    let insertData = cricketdb.findByIdAndUpdate(req.body.uid, req.body);
 
-  //   return res.redirect('show_circketRecord');
-  // } else{
-  //   let data = await cricketdb.findByIdAndUpdate(req.body.uid);
+    return res.redirect('show_circketRecord');
+  } else{
+    let data = await cricketdb.findByIdAndUpdate(req.body.uid);
 
-  //   return res.redirect('show_circketRecord')
-  // }
-  console.log(req.body)
-  console.log(req.file)
+    return res.redirect('show_circketRecord')
+  }
 }

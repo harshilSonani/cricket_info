@@ -66,7 +66,7 @@ module.exports.delete = async (req,res) =>{
   let data = await palyerdb.findById(req.params.id);
 
   if(data.img){
-    fs.unlinkSync(path.join(__dirname,'..',data.img));
+    fs.unlinkSync(path.join(__dirname,'../assets',data.img));
   }
 
   let aa = await palyerdb.findByIdAndDelete(req.params.id);
