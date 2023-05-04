@@ -29,9 +29,9 @@
                                         <select name="countryID" id="countryID" class="form-control">
                                             <option value="" selected disabled>-- Country For Player --</option>
                                             <% for(var d of teams){ %>
-                                                <option value="<%= d.id %>">
-                                                    <%= d.team %>
-                                                </option>
+                                                    <option <% if(data.countryID==d.id){ %> selected <% } %> value="<%= d.id %>">
+                                                        <%= d.team %>
+                                                    </option>
                                                 <% } %>
                                         </select>
                                     </div>

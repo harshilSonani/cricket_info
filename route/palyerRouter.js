@@ -21,6 +21,6 @@ app.get('/delete/:id', palyerdb.delete)
 
 app.get('/update/:id', passport.checkAuthentication, palyerdb.update);
 
-app.post('/updateData', palyerdb.updateData)
+app.post('/updateData', playerModel.uploadsImg, palyerdb.updateData)
 
 module.exports = app;

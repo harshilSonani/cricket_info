@@ -2,6 +2,7 @@ const teamsdb = require("../model/teamsModel");
 const palyerdb = require("../model/playerModel");
 const fs = require('fs');
 const path = require('path');
+const { setUncaughtExceptionCaptureCallback } = require("process");
 
 module.exports.addplayer = async (req, res) => {
   let data = await teamsdb.find({});
@@ -85,6 +86,23 @@ module.exports.update = async (req,res) =>{
 }
 
 module.exports.updateData = async (req,res) =>{
-  console.log(req.body)
-  console.log(req.file)
+  if(req.file){
+    let data = await palyerdb.findById(req.body.uid);
+
+    if(data.flages){
+      fs.unlinkSync(path.join(__dirname,'../assets',data.flages));
+      req.body.flages = palyerdb.imagePath+ '/' + req.file.filename;
+    }
+
+    let insertData = palyerdb.findByIdAndUpdate(req.body.uid, {
+      team : req.body.team,
+      flages : req.body.flages
+    });
+
+    return res.redirect('show_circketRecord');
+  } else{
+    let data = await palyerdb.findByIdAndUpdate(req.body.uid, req.body);
+
+    return res.redirect('show_circketRecord')
+  }
 }

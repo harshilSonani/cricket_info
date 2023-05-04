@@ -49,14 +49,17 @@ module.exports.update = async (req,res) =>{
 
     if(data.flages){
       fs.unlinkSync(path.join(__dirname,'../assets',data.flages));
+      req.body.flages = cricketdb.imagePath+ '/' + req.file.filename;
     }
-    req.body.flages = cricketdb.imagePath+ '/' + req.file.filename;
 
-    let insertData = cricketdb.findByIdAndUpdate(req.body.uid, req.body);
+    let insertData = cricketdb.findByIdAndUpdate(req.body.uid, {
+      team : req.body.team,
+      flages : req.body.flages
+    });
 
     return res.redirect('show_circketRecord');
   } else{
-    let data = await cricketdb.findByIdAndUpdate(req.body.uid);
+    let data = await cricketdb.findByIdAndUpdate(req.body.uid, req.body);
 
     return res.redirect('show_circketRecord')
   }

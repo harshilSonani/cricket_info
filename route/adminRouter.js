@@ -14,7 +14,7 @@ app.post("/adminRegister", adminC.adminRegister);
 
 app.post(
   "/adminLogin",
-  passport.authenticate("local", { failureRedirect: "/login" }),
+  passport.authenticate("local", { failureRedirect: "/admin/login" }),
   adminC.adminLogin
 );
 

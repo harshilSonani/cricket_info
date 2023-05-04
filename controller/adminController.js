@@ -178,6 +178,32 @@ module.exports.deleteAdminRecord = async (req, res) => {
   return res.redirect("back");
 };
 
+module.exports.updateAdminRecord = async (req, res) => {
+  let data = await admindb.findByIdAndUpdate(req.params.id);
+
+  return res.render("update_admin", {
+    data: data,
+  });
+};
+
+module.exports.updateAdmin = async (req, res) => {  
+  if (req.file) {
+    let data = await admindb.findById(req.body.uid);
+
+    if (data.avatar) {
+      fs.unlinkSync(path.join(__dirname, "..", data.avatar));
+    }
+    req.body.avatar = (await admindb.adminPath) + "/" + req.file.filename;
+
+    let imgData = await admindb.findByIdAndUpdate(req.body.uid, req.body);
+
+    return res.redirect("back");
+  } else {
+    let data = await admindb.findByIdAndUpdate(req.body.uid, req.body);
+
+    return res.redirect("back");
+  }
+};
 
 module.exports.login = (req, res) => {
   if (req.isAuthenticated()) {

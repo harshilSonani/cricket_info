@@ -14,7 +14,7 @@ app.get('/deleteCricketRecord/:id',passport.checkAuthentication, cricketC.delete
 
 app.get('/updateAdminRecord/:id', passport.checkAuthentication, cricketC.updateAdminRecord);
 
-app.post('/update', passport.checkAuthentication, cricketC.update)
+app.post('/update', teamsModel.uploadFlags, passport.checkAuthentication, cricketC.update)
 
 
 
